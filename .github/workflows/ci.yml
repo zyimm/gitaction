@@ -59,7 +59,10 @@ jobs:
         git fetch --depth 1 origin tag $TAG_NAME
         git checkout -b tmp $TAG_NAME
 
-    - name: 检测空间
-
+    - name: 更新&安装 feeds
+      working-directory: ./openwrt
       run: |
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
         df -hT $PWD
+
